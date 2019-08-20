@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\client-components",
+    "\\src\\app\\components\\client-components\\another-detail-of-custom",
+    "\\src\\app\\components\\client-components\\client",
+    "\\src\\app\\components\\client-components\\display-products",
+    "\\src\\app\\components\\client-components\\links",
+    "\\src\\app\\components\\client-components\\product-details"
+  ],
+  "SelectedNode": "\\src\\app\\components\\client-components\\product-details\\product-details.component.ts",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,13 @@
+/*.scrollingDiv {
+  width: 530px;
+  height: 330px;
+  text-align: right;
+  background-color: #FFCCFF;
+  border: 2px inset;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}*/
+.myBtn {
+  background-color: black;
+  border: hidden;
+}

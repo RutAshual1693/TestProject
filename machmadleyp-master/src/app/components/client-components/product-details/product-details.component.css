@@ -1,0 +1,18 @@
+.font {
+  color: #00174F;
+  font-family: 'Guttman Hatzvi';
+  font-weight: bold;
+}
+
+.carousel-control.right, .carousel-control.left {
+  background-image: none;
+  color: #00174F;
+}
+
+.myBtn {
+  height: 50px;
+  font-weight: bold;
+  background-color: #00174F;
+  color: white;
+  border-color: white;
+}

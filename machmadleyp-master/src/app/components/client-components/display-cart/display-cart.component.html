@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9"></div>
+    <div class="col-md-3" style="font-size:15px;font-weight:bold">
+      <!--<button class="btn btn-dark">חזרה</button>-->
+     
+    </div>
+  </div>
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <h1 style="position:center; font-family:Guttman-CourMir;right:40%;">סל קניות</h1> <div style="margin-right:10px;display:inline-block">
+          <a>ראשי</a> <span style="color:gray"> > </span><a>פרטי מוצר</a><span style="color:gray"> > </span> <a>סל הקניות</a>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div style="width:100%;height:1px;background-color:#bebebe;"></div><br />
+    </div>
+    <div class="row">
+      <br /><br /><br />
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td>תמונה</td>
+            <td>שם המוצר</td>
+            <td>דגם</td>
+            <td>אפשרויות מוצר</td>
+            <td>פעולה</td>
+            <td>כמות</td>
+            <td>מחיר ליחידה</td>
+            <td>סה"כ</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of shoppingCartService.shoppingCartList">
+            <td> <img style="width:50px;height:auto;" src="assets/pictures/b.jpg"></td>
+            <td>{{product.name}}</td>
+            <td>{{product.model}}</td>
+            <td><span *ngFor="let option of product.options">{{option}}, </span></td>
+            <td>
+              <button class="btn" (click)="shoppingCartService.addProductToCart(product,1,product.options)">+</button>
+              <input type="text" disabled="disabled" style="width: 50px;" value="{{product.quantity}}">
+              <button class="btn" (click)="shoppingCartService.removeProductFromCart(product,i,-1)">-</button>
+            </td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price}}\{{product.quantity}}</td>
+            <td>{{product.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+
+
+    </div>
+  </div>
+</div>

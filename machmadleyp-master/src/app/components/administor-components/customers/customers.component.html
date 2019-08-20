@@ -1,0 +1,63 @@
+
+
+
+<div class="heading" style="position:fixed;width:100%;">
+  <div class="col-lg-8">
+    <button routerLink="addCustomer" class="btn" style="background-color:rgba(0, 0, 0, 0.8)">הוסף לקוח חדש</button>
+  </div>
+</div>
+<main class="page-content">
+  <div class="container-fluid">
+    <div class="w3-panel w3-card" style="background-color:white">
+
+      <div style="margin-top:-20px;">
+        <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+          <img src="./assets/list4.png" style="width:20px;height:20px;" />
+        </div>
+        <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">לקוחות</h4>
+        <br />
+      </div>
+
+      <table class="table">
+        <tr>
+          <td><b>שם פרטי</b></td>
+          <td><b>שם משפחה</b></td>
+          <td><b>דוא"ל</b></td>
+          <td><b>תאריך הרשמה</b></td>
+        </tr>
+        <tr *ngFor="let customer of this.customersService.listCustomers">
+          <td>{{customer.firstName}}</td>
+          <td>{{customer.lastName}}</td>
+          <td>{{customer.mail}}</td>
+          <td>{{customer.registrationDate}}</td>
+          <td>
+            <div style="display:inline-block;margin-left:5px">
+              <div style="background-color:rgba(0, 0, 0, 0.7);width:30px;height:30px;border-radius:5px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:0 5px 10px rgba(191, 191, 191, 0.77)">
+                <img src="./assets/menu.png" (click)="editcustomerClicked(customer)" routerLink="editCustomer" style="width:15px;height:15px;" />
+              </div>
+            </div>
+            <div style="display:inline-block">
+              <div style="background-color:rgba(0, 0, 0, 0.7);width:30px;height:30px;border-radius:5px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:0 5px 10px rgba(191, 191, 191, 0.77)">
+                <img src="./assets/cancel.png" (click)="delete(customer)"  data-toggle="modal" data-target="#myModal" style="width:15px;height:15px;" />
+              </div>
+            </div>
+          </td>
+          <!--<td class="my">
+            <div style="direction:ltr;" class="dropdown">
+              <button class="btn" type="button" data-toggle="dropdown">
+                פעולה
+                <span class="caret"></span>
+              </button>
+              <ul style="direction:ltr;" class="dropdown-menu">
+                <li><a (click)="editcustomerClicked(customer)" routerLink="editCustomer">עריכה</a></li>
+                <li><a (click)="delete(customer)">מחיקה</a></li>
+              </ul>
+            </div>
+          </td>-->
+        </tr>
+      </table>
+      <app-customers-base></app-customers-base>
+    </div>
+  </div>
+</main>
+<app-confirm-deletion></app-confirm-deletion>

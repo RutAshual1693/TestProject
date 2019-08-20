@@ -1,0 +1,24 @@
+<div class="row" style="background-color:#e8e5e5;border-radius:10px">
+  <div class="col-lg-6"></div>
+  <div class="col-lg-6">
+    <form class="form-group" novalidate (ngSubmit)="buy($event)" [formGroup]="stripeTest">
+      <br />
+      <input class="form-control" type="text" formControlName="name" placeholder="הכנס שם">
+      <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+      <br />
+      <button type="submit" class="btn">
+        קנה
+      </button>
+    </form>
+  </div>
+</div>
+<!--<form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
+  <div class="form-row">
+    <label for="card-info">Card Info</label>
+    <div id="card-info" #cardInfo></div>
+
+    <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+  </div>
+
+  <button type="submit">Pay $777</button>
+</form>-->

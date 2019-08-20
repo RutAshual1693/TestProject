@@ -1,0 +1,156 @@
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="heading" style="position:fixed;width:100%;">
+    <div class="col-lg-8">
+      <input type="submit" class="btn" style="background-color:rgba(0, 0, 0, 0.8)" [disabled]="!form.valid"   value="שמור" />
+    </div>
+  </div>
+  <main class="page-content" style="background-color:#f2f7fb;">
+    <div class="container-fluid">
+      <div class="w3-panel w3-card" style="background-color:white">
+        <div style="margin-top:-20px;">
+          <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+            <img src="./assets/icons/add.png" style="width:25px;height:25px;" />
+          </div>
+          <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">הוספת מוצר</h4>
+          <br />
+        </div>
+        <div class="form-group">
+          <table class="table table table-condensed" style="border:hidden;">
+            <tr>
+              <td><label>שם מוצר</label></td>
+              <td> <input type="text" formControlName="name" /></td>
+            </tr>
+            <tr>
+              <td><label>תאור</label></td>
+              <td><editor apiKey="oqih4hs82hr8rg1q784e1q052rkzux80alzrvqkcdtth7r1i" formControlName="prodDescription" [init]="{plugins: 'textcolor', toolbar:'forecolor backcolor', theme_advanced_toolbar_align : 'right'}"></editor></td>
+            </tr>
+            <tr>
+              <td><label>מודל</label></td>
+              <td> <input type="text" class="form-control" formControlName="model" /></td>
+            </tr>
+            <tr>
+              <td><label>מחיר</label></td>
+              <td><input type="number" class="form-control" formControlName="price" /></td>
+            </tr>
+            <tr>
+              <td><label>כמות</label></td>
+              <td><input type="number" class="form-control" formControlName="quantity" value="0" /></td>
+            </tr>
+            <tr>
+              <td><label>זמינות</label></td>
+              <td>
+                <select #stock class="form-control" formControlName="inStock">
+                  <option disabled>זמינות</option>
+                  <option>קיים במלאי</option>
+                  <option>כמות מוגבלת במלאי</option>
+                  <option>אזל מהמלאי</option>
+                </select>
+              </td>
+            </tr>
+            <tr *ngIf="stock=='כמות מוגבלת במלאי'">
+              <td><label>כמות במלאי</label></td>
+              <td><input type="number" value="0" class="form-control" formControlName="quantity" /></td>
+            </tr>
+            <tr>
+              <td><label>קטגוריה</label></td>
+              <td>
+                <ng-multiselect-dropdown placeholder="בחר קטגוריות " formControlName="categories"
+                                         [data]="this.categoriesService.myList"
+                                         [settings]="dropdownSettings">
+                </ng-multiselect-dropdown>
+              </td>
+            </tr>
+
+            <tr>
+              <td><label>מוצרים קשורים</label></td>
+              <td>
+                <ng-multiselect-dropdown placeholder="בחר מוצר" formControlName="relatedProducts"
+                                         [data]="this.productsService.listProducts"
+                                         [settings]="dropdownSettings">
+                </ng-multiselect-dropdown>
+              </td>
+            </tr>
+            <tr *ngIf="false">
+              <td> <label>סוג חיה</label></td>
+              <td>
+                <ng-multiselect-dropdown placeholder="קטגורית אב" formControlName="parentCategory"
+                                         [data]="this.typesService.listTypes"
+                                         [settings]="dropdownSettings">
+                </ng-multiselect-dropdown>
+              </td>
+            </tr>
+            <tr>
+              <td><label>חברה</label></td>
+              <td> <input type="text" formControlName="company" class="form-control" /></td>
+            </tr>
+            <tr>
+              <td><label>תמונות</label></td>
+               <!--<app-add-image></app-add-image>-->
+              <td>
+                <div  >
+                  <div class="col-md-5"></div>
+                  <div class="col-md-7">
+                    <input style="float:right;  background-color:rgba(191, 191, 191, 0.77)" formControlName="img"  type="file" id="img" (change)="onFileChange($event)" #fileInput
+                           accept="image/*">
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!--<tr>
+    <td><label>תמונות</label></td>
+    <td>
+      <app-add-image></app-add-image>
+    </td>
+  </tr>-->
+            <tr>
+              <td><label>סטטוס</label></td>
+              <td> <select type="text" formControlName="status" class="form-control"><option disabled>סטטוס</option><option>פעיל</option><option>כבוי</option></select></td>
+            </tr>
+            <tr>
+              <td>אפשרויות מוצר</td>
+              <td>
+                <table class="table table table-condensed" style="border:hidden;">
+                  <tr *ngFor="let o of listoptions;let i=index;">
+                    <!--<td>אפשרויות מוצר</td>-->
+                    <td *ngIf="o.name!=''" class="row">
+                      <span class="col-lg-1"><button class="btn" (click)="deleteOption(i)" style="background-color:#bf0f0f; color:white; padding:4px 10px 4px 10px; font-size:15px; width:auto">-</button></span>
+                      <span class="col-lg-9">
+                        <ng-multiselect-dropdown placeholder="ערכים" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.listoptions[i].values"
+                                                 [data]="this.listValue"
+                                                 [settings]="dropdownSettings">
+                        </ng-multiselect-dropdown>
+                      </span>
+                      <span class="col-lg-2">{{o.name}}:</span>
+
+                    </td>
+                  </tr>
+                  <tr *ngFor="let o of listoptions">
+
+
+                    <td *ngIf="o.name==''">
+                      <span class="col-lg-10">
+                        <select *ngIf="o.name==''" class="form-control" #s (change)="choosOPtionClicked(s.value)">
+                          <option disabled="disabled">בחר אפשרות מוצר</option>
+                          <option *ngFor="let option of productsService.listProductOptions">{{option.name}}</option>
+                        </select>
+                      </span> <span class="col-lg-2">הוסף אפשרות מוצר</span>
+                    </td>
+                  </tr>
+                  <tr></tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+
+      </div>
+      <div class="w3-panel w3-card">
+
+      </div>
+    </div>
+  </main>
+</form>

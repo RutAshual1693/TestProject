@@ -1,0 +1,198 @@
+
+.font {
+  color: #00174F;
+  font-family: 'Guttman Hatzvi';
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #303030;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+h4 {
+  font-size: 19px;
+  line-height: 1.375em;
+  color: #303030;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.jumbotron {
+  background-color: #f4511e;
+  color: #fff;
+  padding: 100px 25px;
+  font-family: Montserrat, sans-serif;
+}
+
+.bg-grey {
+  background-color: rgba(11, 83, 107, 0.07) !important
+}
+
+.logo-small {
+  color: #f4511e;
+  font-size: 50px;
+}
+
+.logo {
+  color: #f4511e;
+  font-size: 200px;
+}
+
+.thumbnail {
+  padding: 0 0 15px 0;
+  border: none;
+  border-radius: 0;
+}
+
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+
+.item h4 {
+  font-size: 19px;
+  line-height: 1.375em;
+  font-weight: 400;
+  font-style: italic;
+  margin: 70px 0;
+}
+
+.item span {
+  font-style: normal;
+}
+
+
+.slideanim {
+  visibility: hidden;
+}
+
+.slide {
+  animation-name: slide;
+  -webkit-animation-name: slide;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  visibility: visible;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(70%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes slide {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(70%);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .col-sm-4 {
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  .btn-lg {
+    width: 100%;
+    margin-bottom: 35px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    font-size: 150px;
+  }
+}
+
+.anima {
+  visibility: hidden;
+}
+
+.anima1 {
+  visibility: hidden;
+  margin-left: 5px;
+}
+
+.animate1 {
+  visibility: visible;
+  -webkit-animation: mymove 1s; /* Safari 4.0 - 8.0 */
+  animation: mymove 1s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+  0% {
+    visibility: visible;
+    right: 5px;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    right: 0px;
+  }
+}
+
+/* Standard syntax */
+@keyframes mymove {
+  0% {
+    right: 5px;
+    opacity: 0;
+  }
+
+  100% {
+    right: 0px;
+    opacity: 1;
+  }
+}
+
+.animate2 {
+  position: relative;
+  visibility: visible;
+  -webkit-animation: mymove1 1s; /* Safari 4.0 - 8.0 */
+  animation: mymove1 1s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove1 {
+  from {
+    visibility: visible;
+    left: 5px;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    left: 0px
+  }
+}
+
+/* Standard syntax */
+@keyframes mymove1 {
+  from {
+    left: 5px;
+    opacity: 0;
+  }
+
+  to {
+    left: 0px;
+    opacity: 1;
+  }
+}

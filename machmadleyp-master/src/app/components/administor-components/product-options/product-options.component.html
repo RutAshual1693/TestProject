@@ -1,0 +1,62 @@
+
+<div class="heading" style="position:fixed;width:100%;">
+  <div class="col-lg-8">
+    <input  class="btn" style="background-color:rgba(0, 0, 0, 0.8)" routerLink="addProductOption" type="button" value="צור אפשרות מוצר" />
+  </div>
+</div>
+
+<main class="page-content">
+  <div class="container-fluid">
+    <div class="w3-panel w3-card" style="background-color:white">
+
+      <div style="margin-top:-20px;">
+        <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+          <img src="./assets/list4.png" style="width:20px;height:20px;" />
+        </div>
+        <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">אפשרויות מוצר</h4>
+        <br />
+      </div>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <td>שם</td>
+            <td>אפשרות</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let option of productsService.listProductOptions">
+            <td>{{option.name}}</td>
+            <td><span *ngFor="let value of option.values">{{value}},</span></td>
+            <!--<td class="my" style="height:auto">
+              <div style="direction:ltr;" class="dropdown">
+                <button class="btn" type="button" data-toggle="dropdown">
+                  פעולה
+                  <span class="caret"></span>
+                </button>
+                <ul style="direction:ltr;" class="dropdown-menu">
+                  <li><a (click)="editOption(option)" routerLink="editProductOption">עריכה</a></li>
+                  <li><a (click)="delete(option)">מחיקה</a></li>
+                </ul>
+              </div>
+            </td>-->
+            <td>
+              <div style="display:inline-block;margin-left:5px">
+                <div style="background-color:rgba(0, 0, 0, 0.7);width:30px;height:30px;border-radius:5px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:0 5px 10px rgba(191, 191, 191, 0.77)">
+                  <img src="./assets/menu.png" (click)="editOption(option)" routerLink="editProductOption" style="width:15px;height:15px;" />
+                </div>
+              </div>
+              <div style="display:inline-block">
+                <div style="background-color:rgba(0, 0, 0, 0.7);width:30px;height:30px;border-radius:5px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:0 5px 10px rgba(191, 191, 191, 0.77)">
+                  <img src="./assets/cancel.png" data-toggle="modal" data-target="#myModal" (click)="delete(option)" style="width:15px;height:15px;" />
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-product-options-base></app-product-options-base>
+  <app-confirm-deletion></app-confirm-deletion>
+
+</main>

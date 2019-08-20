@@ -1,0 +1,14 @@
+.myBtn {
+  height: 50px;
+  width: 250px;
+  font-weight: bold;
+  background-color: #00174F;
+  color: white;
+  border-color: white;
+}
+
+.font {
+  color: #00174F;
+  font-family: 'Guttman Hatzvi';
+  font-weight: bold;
+}

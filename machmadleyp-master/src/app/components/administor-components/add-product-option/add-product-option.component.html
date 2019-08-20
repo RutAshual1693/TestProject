@@ -1,0 +1,41 @@
+
+<div class="heading" style="position:fixed;width:100%;">
+  <div class="col-lg-8">
+    <input type="submit"  class="btn" style="background-color:rgba(0, 0, 0, 0.8)" value="שמור" (click)="clicked()" />
+  </div>
+
+
+</div>
+<main class="page-content">
+  <div class="container-fluid">
+    <div class="w3-panel w3-card" style="background-color:white">
+      <div style="margin-top:-20px;">
+        <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+          <img src="./assets/list4.png" style="width:20px;height:20px;" />
+        </div>
+        <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">הוספת אפשרות מוצר</h4>
+        <br />
+      </div>
+
+      <div class="form-group">
+        <label>שם אפשרות:</label>
+        <input class="form-control" [(ngModel)]="productOption.name" />
+        <label>ערכים</label>
+        <table class="table">
+          <thead><tr><td><b> ערך</b></td><td><b> הוסף</b></td></tr></thead>
+          <tr *ngFor="let ii of list;let i=index;">
+            <td><input class="form-control" *ngIf="ii==0" type="text" [(ngModel)]="productOption.values[i]" /></td>
+            <td>
+              <button class="btn" *ngIf="ii==1" style="background-color:#1d1b1b; color:white; padding:4px 8px 4px 8px; font-size:15px; width:auto" (click)="addClicked(i)">+</button>
+              <button class="btn" *ngIf="ii==0" (click)="deleteClicked(i)" style="background-color:#bf0f0f; color:white; padding:4px 10px 4px 10px; font-size:15px; width:auto">-</button>
+            </td>
+
+          </tr>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+

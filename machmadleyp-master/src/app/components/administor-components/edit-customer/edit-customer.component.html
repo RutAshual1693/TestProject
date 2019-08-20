@@ -1,0 +1,35 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="heading" style="position:fixed;width:100%;">
+  <div class="col-lg-8">
+    <input type="submit" class="btn" value="שמור" />
+  </div>
+</div>
+  <main class="page-content">
+    <div class="container-fluid">
+      <div class="w3-panel w3-card" style="background-color:white">
+
+        <div style="margin-top:-20px;">
+          <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+            <img src="./assets/icons/pencil-edit-button (1).png" style="width:20px;height:20px;" />
+          </div>
+          <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">עריכת לקוח</h4>
+          <br />
+        </div>
+        <div class="form-group">
+          <label>שם פרטי:</label>
+          <input class="form-control" formControlName="firstName" type="text" />
+          <label>שם משפחה</label>
+          <input class="form-control" formControlName="lastName" type="text" />
+          <label>דוא"ל</label>
+          <input class="form-control" formControlName="mail" type="email" />
+          <label>סיסמא</label>
+          <input class="form-control" formControlName="password" type="password" />
+          <label>אימות סיסמא</label>
+          <input class="form-control" formControlName="confirmPassword" type="password" />
+        </div>
+
+      </div>
+    </div>
+  </main>
+</form>

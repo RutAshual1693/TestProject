@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+<app-nav></app-nav>
+<div>
+  <app-links></app-links>
+</div>
+
+<router-outlet></router-outlet>
+=======
+<!--<app-nav></app-nav>-->
+<div style="position:absolute" >
+  <app-links></app-links>
+</div>
+<app-carousel-advertising ></app-carousel-advertising>
+<router-outlet ></router-outlet>
+>>>>>>> b949c8ba98b620921f72a81f4aa28fefe3699eef

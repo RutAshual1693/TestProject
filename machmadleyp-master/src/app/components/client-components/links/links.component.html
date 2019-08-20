@@ -1,0 +1,62 @@
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <nav id="navbar" class="navbar navbar-default navbar-fixed-top" style="font-family:Tahoma;font-weight:bold">
+    <div class="container-fluid">
+      <div class="navbar-header" style="float:right">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <label id="logo" class="navbar-brand" href="#myPage" style="color:darkcyan">מחמדלי</label>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar" style="float:left">
+        <ul class="nav navbar-nav navbar-right">
+          <li style="float:right"><a (click)="homePageClick()" class="active a" style="cursor:pointer;">דף הבית</a></li>
+          <li style="float:right" class="dropdown">
+          <li style="float:right" class="dropdown" *ngFor="let type of typesService.listTypes">
+            <a style="background-color:transparent;" class="dropdown-toggle a" data-toggle="dropdown" href="#">
+              {{type.name}}
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li *ngFor="let category of this.categoriesService.listCategories|getCategoriesByType:type._id"><a style="float:right" (click)="chooseCategory(type._id,category)" routerLink="baseClientP"><b>{{category.name}}</b></a></li>
+              <!--<li><a href="#">Extras</a></li>
+              <li><a href="#">Media</a></li>-->
+
+            </ul>
+          </li>
+          <!--<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
+          <li style="float:right"><a class="a" href="#">אודות</a></li>
+
+          <li style="float:right;color:white"><a class="a" href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-user"></span><b>הרשם</b></a></li>
+          <li style="float:right;color:white"><a class="a" href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span><b>התחבר</b></a></li>
+          <!--<li style="float:right"><a href="#contact">צור קשר</a></li>-->
+          <li><!--<a href="#"><span class="glyphicon glyphicon-search"></span></a>--></li>
+          <li style="float:right;"><a class="a" href="#contact"> <b>צור קשר</b></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <router-outlet *ngIf="!this.productsService.homePage"></router-outlet>
+  <div *ngIf="this.productsService.homePage">
+
+    <app-carousel-advertising></app-carousel-advertising>
+    <div style="background-color:white">
+      <app-hot-categories></app-hot-categories>
+
+    </div>
+    <app-hot-product></app-hot-product>
+    <app-our-castomers-say></app-our-castomers-say>
+    <div id="about">
+      <!--<app-about-as></app-about-as>-->
+    </div>
+    <div id="contact" style="background-color:white">
+      <app-contact></app-contact>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+  <app-registration></app-registration>
+  <app-login></app-login>
+
+</body>

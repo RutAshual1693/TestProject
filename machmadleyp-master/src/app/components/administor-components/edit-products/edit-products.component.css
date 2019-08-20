@@ -1,0 +1,42 @@
+
+b{
+  font-size:16px;
+  color:rgb(34, 31, 31);
+}
+
+.myActionStyle ul li a {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  position: relative;
+  padding: 8px 30px 8px 20px;
+}
+
+
+/*.table {
+ left:17px;
+}*/
+
+
+
+  /*.myActionStyle td a img {
+    margin-left: 10px;
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: rgb(12, 9, 18,0.5);
+  }
+
+  .myActionStyle td a:hover > i img::before {
+    display: inline-block;
+    animation: swing ease-in-out .5s 1 alternate;
+  }
+
+a {
+  float: left;
+  margin-top: 8px;
+  margin-right: 5px;
+}*/

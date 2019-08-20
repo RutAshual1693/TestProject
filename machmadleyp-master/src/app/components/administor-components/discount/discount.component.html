@@ -1,0 +1,115 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="heading" style="position:fixed;width:100%;">
+    <div class="col-lg-8">
+      <input type="submit" class="btn" style="background-color:rgba(0, 0, 0, 0.8)" [disabled]="!(form.valid&&(kind.value=='הנחה באחוזים'&&c.value > 0 &&c.value < 100))" value="שמור" />
+    </div>
+  </div>
+  <main class="page-content" style="background-color:#f2f7fb;">
+    <div class="container-fluid">
+      <div class="w3-panel w3-card" style="background-color:white">
+        <div style="margin-top:-20px;">
+          <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+            <img src="./assets/icons/tag.png" style="width:20px;height:20px;" />
+          </div>
+          <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">הנחות ומבצעים</h4>
+          <br />
+        </div>
+        <div class="form-group">
+          <table class="table" style="border:hidden;">
+            <tbody>
+              <tr>
+                <td><span>שם מבצע</span></td>
+                <td><input class="form-control" type="text" formControlName="nameSale" /></td>
+              </tr>
+              <tr>
+                <td>
+                  <span>סטטוס</span>
+                </td>
+                <td>
+                  <select class="form-control" formControlName="status">
+                    <option>פעיל</option>
+                    <option>לא פעיל</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><span>היקף ההנחה</span></td>
+                <td>
+                  <select #typeDiscount class="form-control" formControlName="scope">
+                    <!--<option>כל החנות</option>
+                    <option>קטגוריות נבחרות</option>-->
+                    <option>מוצרים נבחרים</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>סוג הנחה</td>
+                <td>
+                  <select #kind class="form-control" formControlName="kindDiscount">
+                    <option>הנחה באחוזים</option>
+                    <option>הנחה קבועה</option>
+                    <!--<option>קבל מוצר חינם</option>-->
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>כמות הנחה</td>
+                <td><input #c class="form-control" type="number" formControlName="countDiscount" /></td>
+              </tr>
+              <!--<tr *ngIf="kind.value=='קבל מוצר חינם'">
+                <td >מוצרים נבחרים מתנה</td>
+                <td>
+                  <ng-multiselect-dropdown placeholder="בחר מוצר" formControlName="selectedProduct"
+                                           [data]="this.productsService.listProducts"
+                                           [settings]="dropdownSettings">
+                  </ng-multiselect-dropdown>
+                </td>
+              </tr>
+              <tr>
+                <td>מעל מחיר</td>
+                <td><input class="form-control" type="number" formControlName="fromPrice" /></td>
+              </tr>
+              <tr>
+                <td>בקניית מוצר</td>
+                <td>
+                <select class="form-control"><option disabled="disabled">בחר מוצר</option><option  *ngFor="let product of productsService.listProducts">{{product.name}}</option></select>
+                </td>
+              </tr>-->
+              <tr *ngIf="typeDiscount.value=='מוצרים נבחרים'">
+
+                <td>מוצרים נבחרים</td>
+                <td>
+                  <ng-multiselect-dropdown placeholder="בחר מוצר" formControlName="selectedProducts"
+                                           [data]="this.productsService.listProducts"
+                                           [settings]="dropdownSettings">
+                  </ng-multiselect-dropdown>
+                </td>
+              </tr>
+              <tr *ngIf="typeDiscount.value=='קטגוריות נבחרות'">
+                <td>קטגוריות נבחרות</td>
+                <td>
+                  <ng-multiselect-dropdown placeholder="בחר קטגוריה" formControlName="selectedCategories"
+                                           [data]="this.arr1"
+                                           [settings]="dropdownSettings">
+                  </ng-multiselect-dropdown>
+                </td>
+              </tr>
+              <!--<tr>
+                <td>כמות מוצרים להוסיף לסל</td>
+                <td>
+                  <input class="form-control" type="number" formControlName="countProdOnCart" />
+                </td>
+              </tr>
+              <tr>
+                <td>כמות מוצרים לקוח יקבל</td>
+                <td>
+                  <input class="form-control" type="number" formControlName="countProdCustomGet" />
+                </td>
+              </tr>-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</form>

@@ -1,0 +1,246 @@
+<br /><br /><br /><br /><br />
+<<<<<<< HEAD
+
+
+
+  <div class="container">
+=======
+<h1 style="position:relative;text-align:center">{{paginationService.category}} ל{{paginationService.baseCategory}}</h1>
+<div style="text-align:center">
+  <a>דף הבית</a><span style="color:gray"> > </span><a>{{paginationService.baseCategory}}</a><span style="color:gray"> / </span><a>{{paginationService.category}}</a>
+</div>
+<br />
+<div style="margin-right:18%;margin-left:18%;border-bottom:0.5px solid #b2b2b2">
+  <input style="margin:5px;width:150px;display:inline-block" type="text" class="form-control" #txtToSearch placeholder="שם מוצר" /><button style="background-color:#d0b623;color:white" (click)="search(txtToSearch.value)" class="glyphicon glyphicon-search btn btn-dark"></button>
+  <button class="btn btn-dark" style="margin:5px;background-color:#333;color:white" (click)="maxPrice()">מחיר עולה</button>
+  <button class="btn btn-dark" style="margin:5px;background-color:#333;color:white" (click)="minPrice()">מחיר יורד</button>
+  <button class="btn btn-dark" style="margin:5px;background-color:#333;color:white" (click)="orders()">הזמנות</button>
+  <button class="btn btn-dark" style="margin:5px;background-color:#333;color:white" (click)="refresh()">רענן</button>
+</div>
+<div class="container" style="padding-right:15%;padding-left:15%;">
+>>>>>>> 4871e3e2a922050efd286e64673badf333a5ea41
+  <div class="row">
+    <div class="col-md-9"></div>
+    <div class="col-md-3" style="font-size:15px;font-weight:bold">
+      <button class="btn btn-dark">חזרה</button>
+      <div style="margin-right:10px;display:inline-block">
+        <a>דף הבית</a><span style="color:gray"> > </span><a>{{paginationService.baseCategory}}</a><span style="color:gray"> / </span><a>{{paginationService.category}}</a>
+      </div>
+      </div>
+  </div>
+    <br />
+    <div class="container-fluid">
+      <div class="row">
+        <div style="width:100%;height:1px;background-color:#bebebe"></div><br /></div>
+      <div class="row">
+        <div class="col-md-9">
+          <label style="font-family:Guttman-CourMir;font-size:30px">{{paginationService.category}} ל{{paginationService.baseCategory}}</label>
+          <div style="display:inline-block;float:left">
+            <input style="margin:5px;width:150px;display:inline-block" type="text" class="form-control" placeholder="שם מוצר" />
+            <button style="background-color:#d0b623;color:white" class="glyphicon glyphicon-search btn btn-dark"></button>
+            <button class="btn btn-dark" style="margin:5px;background-color:#333;color:white">מחיר עולה</button>
+            <button class="btn btn-dark" style="margin:5px;background-color:#333;color:white">מחיר יורד</button>
+            <button class="btn btn-dark" style="margin:5px;background-color:#333;color:white">הזמנות</button>
+          </div>
+            <div style="width:100%;height:1px;background-color:#bebebe"></div><br />
+         
+        </div>
+
+
+        <div class="col-md-3">
+          <br />
+          <b>46 מוצרים</b>
+          <div style="width:100%;height:1px;background-color:#bebebe"></div><br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div id="slide3" class="row slideanim">
+            <div>
+              <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let product of paginationService.pagedItems; let i = index">
+                <article class="card-wrapper">
+                  <div style="cursor:pointer" class="image-holder" (click)="productDetails(product)" routerLink="productDetails">
+                    <!--  <div class="glyphicon glyphicon-eye-open "></div>-->
+                    <div class="image-liquid image-holder--original">
+                      <img src="./assets/{{arr[i]}}" />
+                    </div>
+                  </div>
+                  <div class="product-description">
+                    <!-- title -->
+                    <h1 class="product-description__title">
+                      <button style="border:0;background-color:transparent;direction:rtl" (click)="shoppingCartService.addProductToCart(product,1)">
+                        {{product.name}}
+                      </button>
+                    </h1>
+                    <!-- category and price -->
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-4 product-description__price" style="direction:ltr">
+                        {{product.price|currency:'ILS'}}
+                      </div>
+                      <div class="col-xs-12 col-sm-8 product-description__category secondary-text">
+                        Men's running shirt
+                      </div>
+                    </div>
+                    <!-- divider -->
+                    <hr />
+                    <!-- sizes -->
+                    <div class="sizes-wrapper">
+                      <b>Sizes</b>
+                      <br />
+                      <span class="secondary-text text-uppercase">
+                        <ul class="list-inline">
+                          <li>xs,</li>
+                          <li>s,</li>
+                          <li>sm,</li>
+                          <li>m,</li>
+                          <li>l,</li>
+                          <li>xl,</li>
+                          <li>xxl</li>
+                        </ul>
+                      </span>
+                    </div>
+                    <!-- colors -->
+                    <div class="color-wrapper">
+                      <b>Colors</b>
+                      <br />
+                      <ul class="list-inline color-list">
+                        <li class="color-list__item color-list__item--red"></li>
+                        <li class="color-list__item color-list__item--blue"></li>
+                        <li class="color-list__item color-list__item--green"></li>
+                        <li class="color-list__item color-list__item--orange"></li>
+                        <li class="color-list__item color-list__item--purple"></li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <div class="panel-group" id="accordion">
+
+            <input type="checkbox" /><label style="margin-right:5px">חדש</label>
+            <div style="width:100%;height:1px;background-color:#bebebe"></div><br />
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                    צבע
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <input type="checkbox" value="צהוב" /><label style="margin-right:5px"> צהוב </label><br />
+                  <input type="checkbox" value="חום" /><label style="margin-right:5px"> חום </label><br />
+                  <input type="checkbox" value="בורדו" /><label style="margin-right:5px"> בורדו </label><br />
+                  <input type="checkbox" value="תכלת" /><label style="margin-right:5px"> תכלת </label><br />
+                  <input type="checkbox" value="ירוק" /> <label style="margin-right:5px"> ירוק </label><br />
+                  <input type="checkbox" value="שחור" /><label style="margin-right:5px"> שחור </label>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                    דוגמא
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <label>פסים</label><input type="checkbox" value="פסים" />
+                  <label>משובץ</label><input type="checkbox" value="משובץ" />
+                  <label>חלק</label><input type="checkbox" value="חלק" />
+                  <label>מעוין</label><input type="checkbox" value="מעוין" />
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                    צורה
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <label>עגול</label> <input type="checkbox" value="עגול" />
+                  <label>ריבוע</label> <input type="checkbox" value="ריבוע" />
+                  <label>מלבן</label> <input type="checkbox" value="מלבן" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<app-sopping-cart></app-sopping-cart>
+
+
+
+<!--<div class="container responsive">
+  <div *ngFor="let product of paginationService.pagedItems">
+    <div class="card col-md-4">
+      <img (click)="productDetails(product)" routerLink="productDetails" src="assets/pictures/b.jpg" alt="{{product.name}}" title="{{product.name}}" style="width:200px;top:0; cursor:pointer;">
+      <div class="container">
+        <h4 style="font-family:Tahoma;">{{product.name}}</h4>
+        <br />
+        <b>{{product.price|currency:'ILS'}}</b><br />
+        <button type="button" class="btn toOrder" data-toggle="modal" data-target="#myModal" (click)="shoppingCartService.addProductToCart(product,1)">
+          <img src="assets\img\icons\cart.png" />
+          <span>הוספה לסל</span>
+        </button>
+      </div>
+    </div>
+  </div>-->
+<!--<span *ngFor="let product of paginationService.pagedItems" style="background-color:rgba(252, 252, 252,0.8); margin:10px;margin-top:10px; border:groove;" class="col-lg-3 col-sm-6 col-xs-12">
+  <a>
+    <img width="180"
+         alt="{{product.name}}" title="{{product.name}}" style="cursor:pointer;" (click)="productDetails(product)" routerLink="productDetails" src="assets/pictures/b.jpg" />
+  </a>
+  <span style="font-family:Tahoma;">{{product.name}}</span>
+  <br />
+  <b>{{product.price|currency:'ILS'}}</b><br />
+  <button type="button" class="btn toOrder" data-toggle="modal" data-target="#myModal" (click)="shoppingCartService.addProductToCart(product,1)">
+    <img src="assets\img\icons\cart.png" />
+    <span>הוספה לסל</span>
+  </button>
+</span>-->
+<!--</div>-->
+
+<app-sopping-cart></app-sopping-cart>
+<!---------------------------
+pagination--------------------------------------------------------------------
+---------------------------->
+<div class="container">
+  <ul *ngIf="paginationService.pager.pages && paginationService.pager.pages.length" class="pagination">
+    <li [ngClass]="{disabled:paginationService.pager.currentPage === 1}">
+      <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:paginationService.pager.currentPage === 1}">
+      <a (click)="setPage(paginationService.pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of paginationService.pager.pages" [ngClass]="{active:paginationService.pager.currentPage === page}">
+      <a (click)="paginationService.setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:paginationService.pager.currentPage === paginationService.pager.totalPages}">
+      <a (click)="paginationService.setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:paginationService.pager.currentPage === paginationService.pager.totalPages}">
+      <a (click)="paginationService.setPage(paginationService.pager.totalPages)">Last</a>
+    </li>
+  </ul>
+  <hr />
+</div>
+<app-base-client-p></app-base-client-p>

@@ -1,0 +1,215 @@
+<div class="page-wrapper chiller-theme sidebar-bg bg1 toggled" style="background-color:#F7F7F7" dir="rtl">
+  <br /><br />
+  <a id="show-sidebar" class="btn btn-sm btn-dark">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a style="color:white;">החנות שלי</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <br />
+            <br />
+            <br />  <br />
+            <br />
+            <br />
+            <a routerLink="main" [class.active1]="active=='main'" (click)="clicked('main')">
+              <i class="glyphicon glyphicon-home"></i>
+              <span>ראשי</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a [class.active1]="active=='storeManagment'" (click)="clicked('storeManagment')"><i class="glyphicon glyphicon-wrench"></i>ניהול חנות</a>
+            <div class="sidebar-submenu">
+              <ul (click)="clicked('')">
+                <li>
+                  <a routerLink="productsBase">
+                    <span>מוצרים</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="categoriesBase">קטגוריות</a>
+                </li>
+                <li>
+                  <a routerLink="parentCategoriesBase">קטגוריות אב</a>
+                </li>
+                <li>
+                  <a routerLink="productOptionsBase">אפשרויות מוצר</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a [class.active1]="active=='customersAndOrder'" (click)="clicked('customersAndOrder')"><i class="glyphicon glyphicon-user"></i>לקוחות והזמנות</a>
+            <div class="sidebar-submenu">
+              <ul (click)="clicked()">
+                <li>
+                  <a routerLink="customersBase">לקוחות</a>
+                </li>
+                <li>
+                  <a routerLink="orders">הזמנות</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a>
+              <i class="far fa-gem"></i>
+              <span>מבצעים</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a routerLink="saleBase">הנחה רגילה</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a routerLink="storeSettings">
+              <i class="fa fa-cog"></i>
+
+              <span>הגדרות חנות</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+      <!--<div class="dropdown">
+        <a class="" id="dropdownMenuNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-bell"></i>
+          <span class="badge badge-pill badge-warning notification">3</span>
+        </a>
+        <div class="dropdown-menu notifications" aria-labelledby="dropdownMenuMessage">
+          <div class="notifications-header">
+            <i class="fa fa-bell"></i>
+            Notifications
+          </div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item">
+            <div class="notification-content">
+              <div class="icon">
+                <i class="fas fa-check text-success border border-success"></i>
+              </div>
+              <div class="content">
+                <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. In totam explicabo</div>
+                <div class="notification-time">
+                  6 minutes ago
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="dropdown-item">
+            <div class="notification-content">
+              <div class="icon">
+                <i class="fas fa-exclamation text-info border border-info"></i>
+              </div>
+              <div class="content">
+                <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. In totam explicabo</div>
+                <div class="notification-time">
+                  Today
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="dropdown-item">
+            <div class="notification-content">
+              <div class="icon">
+                <i class="fas fa-exclamation-triangle text-warning border border-warning"></i>
+              </div>
+              <div class="content">
+                <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. In totam explicabo</div>
+                <div class="notification-time">
+                  Yesterday
+                </div>
+              </div>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-center">View all notifications</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a class="" id="dropdownMenuMessage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-envelope"></i>
+          <span class="badge badge-pill badge-success notification">7</span>
+        </a>
+        <div class="dropdown-menu messages" aria-labelledby="dropdownMenuMessage">
+          <div class="messages-header">
+            <i class="fa fa-envelope"></i>
+            Messages
+          </div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item">
+            <div class="message-content">
+              <div class="pic">
+                <img src="./assets/img (2)/user.jpg" alt="">
+              </div>
+              <div class="content">
+                <div class="message-title">
+                  <strong> Jhon doe</strong>
+                </div>
+                <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. In totam explicabo</div>
+              </div>
+            </div>
+          </a>
+          <a class="dropdown-item">
+            <div class="message-content">
+              <div class="pic">
+                <img src="./assets/img (2)/user.jpg" alt="">
+              </div>
+              <div class="content">
+                <div class="message-title">
+                  <strong> Jhon doe</strong>
+                </div>
+                <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. In totam explicabo</div>
+              </div>
+            </div>
+          </a>
+          <a class="dropdown-item">
+            <div class="message-content">
+              <div class="pic">
+                <img src="./assets/img (2)/user.jpg" alt="">
+              </div>
+              <div class="content">
+                <div class="message-title">
+                  <strong> Jhon doe</strong>
+                </div>
+                <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. In totam explicabo</div>
+              </div>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-center">View all messages</a>
+        </div>
+      </div>-->
+      <div class="dropdown">
+        <a class="">
+          <i class="fa fa-cog" routerLink="designSetting"></i>
+          <span class="badge-sonar"></span>
+        </a>
+      </div>
+      <div>
+        <a>
+          <i class="fa fa-power-off" (click)="powerOf()"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- page-content" -->
+ 
+  <router-outlet>
+    <app-main *ngIf="show"></app-main>
+  </router-outlet>
+  <!-- sidebar-wrapper  -->
+
+</div>

@@ -1,0 +1,83 @@
+<div  class="adminPage">
+  <div class="heading" style="position:fixed;width:100%;">
+    <div class="col-lg-8">
+      <button routerLink="add" class="btn" style="background-color:rgba(0, 0, 0, 0.8)">הוסף מוצר חדש</button>
+    </div>
+    <div class="col-lg-2"> </div>
+  </div>
+  <!--<div class="col-lg-1">-->
+  <!--<img src="assets/icons/plus (13).png"  style="text-align:center;cursor:pointer;" alt="הוסף" title="הוסף מוצר" /></div>-->
+  <!--<a class="" routerLink="designSetting" style="float:left;">
+    <i class="fa fa-cog" style="color:black;width:60px;"></i>
+  </a>
+  <div>
+    <a class="btn btn-dark" style="margin:auto; height:15px;" target="_blank">
+      הוסף מוצר
+    </a>
+  </div>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>-->
+  <main class="page-content">
+    <div class="container-fluid">
+      <div class="w3-panel w3-card" style="background-color:white" >
+        <div style="margin-top:-20px;">
+          <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+            <img src="./assets/list4.png" style="width:20px;height:20px;" />
+          </div>
+          <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">המוצרים שלי</h4>
+          <br />
+        </div>
+        <table class="table table-condensed">
+          <thead style="color:#a76c95;font-weight:200">
+            <tr>
+              <td>תמונה</td>
+              <td>שם מוצר</td>
+              <td>מודל</td>
+              <td>מחיר</td>
+              <td>זמינות</td>
+              <td>פעולה</td>
+              <!--<td><b>עריכה</b></td><
+      <td><b>מחיקה</b></td>-->
+            </tr>
+          </thead>
+       
+          <tbody>
+            <tr *ngFor="let product of productsService.listProducts;let i=index">
+              <td height="50px">
+                <img style="width:50px; height:50px" src="./assets/images/{{product.imgPath}}" />
+              </td>
+              <td>{{product.name}}</td>
+              <td>{{product.model}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.inStock}}</td>
+
+              <!--<td>
+        <br /><br />
+        <a><i><img (click)="productsService.editProductClicked(product)" routerLink="editProduct2" style="cursor:pointer;top:50px;" alt="ערוך מוצר" title="ערוך" src="assets/icons/edit.png" /></i></a>
+      </td>
+      <td>
+        <br /><br />
+        <a (click)="delete(product)"><i><img src="assets/icons/delete.png" style="cursor:pointer;top:50px;" alt="מחק מוצר" title="מחק" /></i></a>
+      </td>-->
+              <td>
+                <div style="display:inline-block;margin-left:5px">
+                  <div (click)="productsService.editProductClicked(product)" routerLink="editProduct2" style="background-color:rgba(0, 0, 0, 0.7);width:30px;height:30px;border-radius:5px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:0 5px 10px rgba(191, 191, 191, 0.77)">
+                    <img src="./assets/menu.png" (click)="productsService.editProductClicked(product)" routerLink="editProduct2" style="width:15px;height:15px;" />
+                  </div>
+                </div>
+                <div style="display:inline-block">
+                  <div (click)="delete(product)" style="background-color:rgba(0, 0, 0, 0.7);width:30px;height:30px;border-radius:5px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:0 5px 10px rgba(191, 191, 191, 0.77)">
+                    <img src="./assets/cancel.png" data-toggle="modal" data-target="#myModal" (click)="delete(product)" style="width:15px;height:15px;" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <app-products-base></app-products-base>
+  </main>
+</div>
+<app-confirm-deletion></app-confirm-deletion>

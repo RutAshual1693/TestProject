@@ -1,0 +1,53 @@
+<div class="adminPage">
+  <div class="heading" style="position:fixed;width:100%;">
+    <div class="col-lg-8">
+      <button (click)="excelService.clicked()" class="btn" style="background-color:rgba(0, 0, 0, 0.8)">ייצא לאקסל</button>
+    </div>
+    <div class="col-lg-2"> </div>
+  </div>
+  <main class="page-content">
+    <div class="container-fluid">
+      <div class="w3-panel w3-card" style="background-color:white">
+        <div style="margin-top:-20px;">
+          <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+            <img src="./assets/list4.png" style="width:20px;height:20px;" />
+          </div>
+          <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">רשימת הזמנות</h4>
+          <br />
+        </div>
+        <table class="table table-condensed">
+          <thead style="color:#a76c95;font-weight:200">
+            <tr>
+              <!--<td>תמונה</td>-->
+              <td>שם לקוח</td>
+              <td>מס' טלפון</td>
+
+              <td>תאריך הזמנה</td>
+              <td>פריטים בהזמנה</td>
+              <td>סה"כ לתשלום</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let order of ordersService.ordersList;let i=index">
+              <!--<td height="50px">
+    <img style="width:50px; height:50px" src="/assets/arr[i]" />
+  </td>-->
+              <td>{{order.customerDetails.firstName}} {{order.customerDetails.lastName}}</td>
+              <td>{{order.customerDetails.numberPhone}}</td>
+
+              <td>{{order.orderDate}}</td>
+
+
+              <td>
+                <div><span *ngFor="let o of order.products">{{o.name}},</span></div>
+              </td>
+              <td>{{order.finalPrice}} ₪</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>

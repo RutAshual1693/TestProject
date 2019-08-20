@@ -1,0 +1,193 @@
+<div class="container" style="padding-right:10%;padding-left:10%">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <h2 class="col-md-4 font" style="font-weight:bold;color:black">חדש!</h2>
+    <div class="col-md-5"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div *ngFor="let item of arr; let i=index">
+        <div class="col-xs-12 col-sm-6 col-md-6 moveR" *ngIf="i!=0">
+          <article class="card-wrapper ">
+            <div style="cursor:pointer" class="image-holder" data-toggle="modal" data-target="#product_view" (click)="viewProductDails(item)">
+              <!--  <div class="glyphicon glyphicon-eye-open "></div>-->
+              <!--<a href="#" class="image-holder__link"></a>-->
+              <div class="image-liquid image-holder--original">
+                <img src="./assets/images/{{item.imgPath}}" style="width:100%;height:100%" />
+              </div>
+            </div>
+            <div class="product-description">
+              <!-- title -->
+              <h1 class="product-description__title">
+                <button style="border:0;background-color:transparent;direction:rtl">
+                  <span *ngFor="let i of item.name|nameLength:item.name" style="border:0;background-color:transparent;direction:rtl;color:gray;font-size:15px">
+                    {{i}}<br />
+                    <span *ngIf="item.name|emptyLine:item.name"><br /></span>
+                  </span>
+                </button>
+              </h1>
+              <!-- category and price -->
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 product-description__price" style="direction:ltr">
+                  <span>{{salesService.listSale|originPrice:item}}</span>
+                  <span style="text-decoration: line-through;margin-right:5px;">{{salesService.listSale|deleteOriginPrice:item}}</span>
+                  <span #price style="color:red;">{{salesService.listSale|getSalePrice:item}}</span>
+
+                </div>
+              </div>
+              <!-- divider -->
+              <hr />
+              <!-- sizes -->
+              <div class="sizes-wrapper">
+                <br />
+                <div class="secondary-text text-uppercase" *ngFor="let option of item.options">
+                  <ul class="list-inline">
+                    <li *ngFor="let value of option.values">{{value}},</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="col-xs-12 col-sm-12 col-md-12 moveL">
+        <article class="card-wrapper ">
+          <div style="cursor:pointer" class="image-holder" data-toggle="modal" data-target="#product_view" (click)="viewProductDetails(arr[0])">
+            <!--  <div class="glyphicon glyphicon-eye-open "></div>-->
+            <!--<a href="#" class="image-holder__link"></a>-->
+            <div class="image-liquid image-holder--original">
+              <img src="./assets/images/{{arr[0].imgPath}}" style="width:100%;height:100%" />
+            </div>
+          </div>
+          <div class="product-description">
+            <!-- title -->
+            <h1 class="product-description__title">
+              <button style="border:0;background-color:transparent;direction:rtl" (click)="shoppingCartService.addProductToCart(product,1)">
+                <span *ngFor="let it of arr[0].name|nameLength:arr[0].name" style="border:0;background-color:transparent;direction:rtl;color:gray;font-size:15px">
+                  {{it}}<br />
+                  <span *ngIf="arr[0].name|emptyLine:arr[0].name"><br /></span>
+                </span>
+              </button>
+            </h1>
+            <!-- category and price -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 product-description__price" style="direction:ltr">
+                <span>{{salesService.listSale|originPrice:arr[0]}}</span>
+                <span style="text-decoration: line-through;margin-right:5px;">{{salesService.listSale|deleteOriginPrice:arr[0]}}</span>
+                <span #price style="color:red;">{{salesService.listSale|getSalePrice:arr[0]}}</span>
+
+              </div>
+            </div>
+            <!-- divider -->
+            <hr />
+            <!-- sizes -->
+            <div class="sizes-wrapper">
+              <br />
+              <div class="secondary-text text-uppercase" *ngFor="let option of arr[0].options">
+                <ul class="list-inline">
+                  <li *ngFor="let value of option.values">{{value}},</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div *ngFor="let item of arr1; let i=index">
+        <div class="col-xs-12 col-sm-6 col-md-6 moveR1" *ngIf="i!=0">
+          <article class="card-wrapper ">
+            <div style="cursor:pointer" class="image-holder" data-toggle="modal" data-target="#product_view" (click)="viewProductDetails(item)">
+              <!--  <div class="glyphicon glyphicon-eye-open "></div>-->
+              <!--<a href="#" class="image-holder__link"></a>-->
+              <div class="image-liquid image-holder--original">
+                <img src="./assets/images/{{item.imgPath}}" style="width:100%;height:100%" />
+              </div>
+            </div>
+            <div class="product-description">
+              <!-- title -->
+              <h1 class="product-description__title">
+                <button style="border:0;background-color:transparent;direction:rtl" (click)="shoppingCartService.addProductToCart(product,1)">
+                  <span *ngFor="let ite of arr1[0].name|nameLength:arr1[0].name" style="border:0;background-color:transparent;direction:rtl;color:gray;font-size:15px">
+                    {{ite}}<br />
+                    <span *ngIf="arr1[0].name|emptyLine:arr1[0].name"><br /></span>
+                  </span>
+                </button>
+              </h1>
+              <!-- category and price -->
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 product-description__price" style="direction:ltr">
+                  <span>{{salesService.listSale|originPrice:item}}</span>
+                  <span style="text-decoration: line-through;margin-right:5px;">{{salesService.listSale|deleteOriginPrice:item}}</span>
+                  <span #price style="color:red;">{{salesService.listSale|getSalePrice:item}}</span>
+
+                </div>
+
+              </div>
+              <!-- divider -->
+              <hr />
+              <!-- sizes -->
+              <div class="sizes-wrapper">
+                <br />
+                <div class="secondary-text text-uppercase" *ngFor="let option of item.options">
+                  <ul class="list-inline">
+                    <li *ngFor="let value of option.values">{{value}},</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="col-xs-12 col-sm-12 col-md-12 moveL1">
+        <article class="card-wrapper ">
+          <div style="cursor:pointer" class="image-holder" data-toggle="modal" data-target="#product_view" (click)="viewProductDetails(arr1[0])">
+            <!--  <div class="glyphicon glyphicon-eye-open "></div>-->
+            <!--<a href="#" class="image-holder__link"></a>-->
+            <div class="image-liquid image-holder--original">
+              <img src="./assets/images/{{arr1[0].imgPath}}" style="width:100%;height:100%" />
+            </div>
+          </div>
+          <div class="product-description">
+            <!-- title -->
+            <h1 class="product-description__title">
+              <button style="border:0;background-color:transparent;direction:rtl">
+                <span *ngFor="let j of arr1[0].name|nameLength:arr1[0].name" style="border:0;background-color:transparent;direction:rtl;color:gray;font-size:15px">
+                  {{j}}<br />
+                  <span *ngIf="arr1[0].name|emptyLine:arr1[0].name"><br /></span>
+                </span>
+              </button>
+            </h1>
+            <!-- category and price -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 product-description__price" style="direction:ltr">
+                <span>{{salesService.listSale|originPrice:arr1[0]}}</span>
+                <span style="text-decoration: line-through;margin-right:5px;">{{salesService.listSale|deleteOriginPrice:arr1[0]}}</span>
+                <span #price style="color:red;">{{salesService.listSale|getSalePrice:arr1[0]}}</span>
+              </div>
+            </div>
+            <!-- divider -->
+            <hr />
+            <!-- sizes -->
+            <div class="sizes-wrapper">
+              <br />
+              <div class="secondary-text text-uppercase" *ngFor="let option of arr1[0].options">
+                <ul class="list-inline">
+                  <li *ngFor="let value of option.values">{{value}},</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<app-product-details></app-product-details>

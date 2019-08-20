@@ -1,0 +1,15 @@
+<!--<table>
+<tr>
+  <td *ngFor="let product of this.productsService.listProducts">
+    {{product.name}}
+  </td>
+</tr>
+</table>-->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-md-3" *ngFor="let product of this.productsService.listProducts">
+      <label>{{product.name}}</label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,148 @@
+<!--<main class="page-content">
+  <div class="container-fluid">
+    <div class="w3-panel w3-card">
+      <br />
+      <div class="col-lg-1"></div>
+      <div class="col-md-8"></div>
+      <div class="form-group col-md-3">
+        <h2 style="color: rgb(33, 9, 103,0.9);">הוספת מוצר </h2>
+      </div>
+      <br /><br />
+      <br /><br />
+
+
+
+
+
+    </div>
+  </div>
+</main>-->
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="heading" style="position:fixed;width:100%;">
+    <div class="col-lg-8">
+      <input type="submit"  class="btn"  [disabled]="!form.valid"value="שמור" />
+    </div>
+    <div class="col-lg-2"> <p style="color:black; float:right; font-size:20px;">יצירת מוצר </p></div>
+    <div class="col-lg-2"> </div>
+
+  </div>
+
+  <main class="page-content" style="background-color:#f2f7fb;">
+    <div class="container-fluid">
+      <div class="w3-panel w3-card">
+      
+        <br /><br />
+        <br /><br />    <div class="form-group">
+          <table class="table" style="border:hidden;">
+            <tr>
+              <td><label>שם מוצר</label></td>
+              <td> <input type="text" formControlName="name" /></td>
+            </tr>
+            <tr>
+              <td><label>תאור</label></td>
+              <td><editor apiKey="oqih4hs82hr8rg1q784e1q052rkzux80alzrvqkcdtth7r1i" formControlName="prodDescription" [init]="{plugins: 'textcolor', toolbar:'forecolor backcolor'}"></editor></td>
+            </tr>
+            <tr>
+              <td><label>מודל</label></td>
+              <td> <input type="text" class="form-control" formControlName="model" /></td>
+            </tr>
+            <tr>
+              <td><label>מחיר</label></td>
+              <td><input type="number" class="form-control" formControlName="price" /></td>
+            </tr>
+            <tr>
+              <td><label>זמינות</label></td>
+              <td>
+                <select class="form-control" formControlName="inStock">
+                  <option disabled>זמינות</option>
+                  <option>קיים במלאי</option>
+                  <option>אזל מהמלאי</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label>כמות במלאי</label></td>
+              <td><input type="number" class="form-control" formControlName="quantity" /></td>
+            </tr>
+            <tr>
+              <td> <label>כמות מינימאלית להזמנה</label></td>
+              <td> <input type="number" class="form-control" formControlName="minQuantityInOrder" /></td>
+            </tr>
+            <tr>
+              <td><label>שם יחודי לקישור</label></td>
+              <td><input type="text" formControlName="uniqueNameToLink" class="form-control" /></td>
+            </tr>
+            <tr>
+              <td><label>קטגוריה</label></td>
+              <td>
+                <ng-multiselect-dropdown placeholder="בחר קטגוריות " class="form-control" formControlName="categories"
+                                         [data]="this.categoriesService.listCategories"
+                                         [settings]="dropdownSettings">
+                </ng-multiselect-dropdown>
+              </td>
+            </tr>
+            <tr>
+              <td><label>אפשרויות מוצר</label></td>
+              <td>
+                <ng-multiselect-dropdown placeholder="אפשרויות מוצר " class="form-control" formControlName="options"
+                                         [data]="this.productsService.listProductOptions"
+                                         [settings]="dropdownSettings">
+                </ng-multiselect-dropdown>
+              </td>
+            </tr>
+            <tr>
+              <td><label>מוצרים קשורים</label></td>
+              <td>
+                <ng-multiselect-dropdown placeholder="בחר מוצר" class="form-control" formControlName="relatedProducts"
+                                         [data]="this.productsService.listProducts"
+                                         [settings]="dropdownSettings">
+                </ng-multiselect-dropdown>
+              </td>
+            </tr>
+            <tr *ngIf="false">
+              <td> <label>סוג חיה</label></td>
+              <td>
+                <ng-multiselect-dropdown placeholder="סוג חיה" class="form-control" formControlName="parentCategory"
+                                         [data]="this.typesService.listTypes"
+                                         [settings]="dropdownSettings">
+                </ng-multiselect-dropdown>
+              </td>
+            </tr>
+            <tr>
+              <td><label>חברה</label></td>
+              <td> <input type="text" formControlName="company" class="form-control" /></td>
+            </tr>
+
+<<<<<<< HEAD
+                              <tr>
+                                <td><label>תמונות</label></td>
+                                <td>
+
+                                  <app-add-image></app-add-image>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td><label>סטטוס</label></td>
+                                <td> <select type="text" formControlName="status" class="form-control"><option disabled>סטטוס</option><option>פעיל</option><option>כבוי</option></select></td>
+                              </tr>
+=======
+            <tr>
+              <td><label>תמונות</label></td>
+              <td>
+                <!-- <input type='file' (change)="readURL(this)" />
+                <img id="blah" src="http://placehold.it/180" alt="your image" />-->
+              </td>
+            </tr>
+            <tr>
+              <td><label>סטטוס</label></td>
+              <td> <select type="text" formControlName="status" class="form-control"><option disabled>סטטוס</option><option>פעיל</option><option>כבוי</option></select></td>
+            </tr>
+>>>>>>> ede737520c069239775ff14c0db4311598cf8c93
+
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</form>

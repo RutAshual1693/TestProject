@@ -1,0 +1,18 @@
+{
+  "ExpandedNodes": [
+<<<<<<< HEAD
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\client-components",
+    "\\src\\app\\components\\client-components\\hot-categories"
+  ],
+  "SelectedNode": "\\src\\app\\components\\client-components\\hot-categories\\hot-categories.component.ts",
+=======
+    ""
+  ],
+  "SelectedNode": "\\.gitignore",
+>>>>>>> 838e72210f2e3039a8cd0fd38dcd533479a540c9
+  "PreviewInSolutionExplorer": false
+}

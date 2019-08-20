@@ -1,0 +1,111 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="heading" style="position:fixed;width:100%;">
+    <div class="col-lg-8">
+      <input type="submit"  [disabled]="!form.valid" class="btn" style="background-color:rgba(0, 0, 0, 0.8)" value="שמור" />
+    </div>
+  </div>
+
+  <main class="page-content" style="background-color:#f2f7fb;">
+    <div class="container-fluid">
+      <div class="w3-panel w3-card" style="background-color:white">
+        <div style="margin-top:-20px;">
+          <div style="background-color:#dc0065;width:60px;height:60px;border-radius:10px; text-align:center;display:table-cell; vertical-align:middle;box-shadow:3px 5px 5px rgba(191, 191, 191, 0.77)">
+            <img src="./assets/icons/gear.png" style="width:20px;height:20px;" />
+          </div>
+          <h4 style="margin-top:-30px; margin-right:70px; font-family:Guttman-CourMir">החנות שלי</h4>
+          <br />
+        </div>
+
+        <div class="form-group">
+          <table class="table" style="border:hidden;">
+            <tbody>
+              <tr>
+                <td><span>בחר מוצרים חמים להצגה בדף הבית</span> <span style="margin-right:5px" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="יש לבחור 6 מוצרים אשר יוצגו בדף הבית"></span></td>
+                <td>
+
+                  <ng-multiselect-dropdown placeholder="בחר מוצר" formControlName="hotProducts"
+                                           [data]="this.productsService.listProducts"
+                                           [settings]="dropdownSettings">
+                  </ng-multiselect-dropdown>
+                </td>
+              </tr>
+              <tr>
+                <td><span>שם החנות להצגה באתר</span></td>
+                <td><input class="form-control" type="text" formControlName="nameStore" /></td>
+              </tr>
+              <tr>
+                <td>בעל החנות להצגה באתר</td>
+                <td><input class="form-control" type="text" formControlName="nameAdmin" /></td>
+              </tr>
+              <tr>
+                <td>כתובת להצגה באתר</td>
+                <td><input class="form-control" type="text" formControlName="adress" /></td>
+              </tr>
+              <tr>
+                <td>קוד גאוגרפי להצגה באתר</td>
+                <td><input class="form-control" type="text" formControlName="geographicCode" /></td>
+              </tr>
+              <tr>
+                <td>אימייל להצגה באתר</td>
+                <td><input class="form-control" type="text" formControlName="email" /></td>
+              </tr>
+              <tr>
+                <td>טלפון להצגה באתר</td>
+                <td><input class="form-control" type="text" formControlName="numberPhone" /></td>
+              </tr>
+              <tr>
+                <td>פקס להצגה באתר</td>
+                <td><input class="form-control" type="text" formControlName="fax" /></td>
+              </tr>
+              <tr>
+                <td>הצג תוכן שיוצג בעמוד צור קשר</td>
+                <td>
+                  <editor formControlName="contact" apiKey="oqih4hs82hr8rg1q784e1q052rkzux80alzrvqkcdtth7r1i" [init]="{plugins: 'textcolor', toolbar:'forecolor backcolor'}"></editor>
+                </td>
+              </tr>
+              <tr>
+                <td>שעות פתיחה</td>
+                <td>
+                  <editor formControlName="openingHours" apiKey="oqih4hs82hr8rg1q784e1q052rkzux80alzrvqkcdtth7r1i" [init]="{plugins: 'textcolor', toolbar:'forecolor backcolor'}"></editor>
+                </td>
+              </tr>
+
+              <tr>
+                <td>אודות</td>
+                <td>
+                  <editor formControlName="about" apiKey="oqih4hs82hr8rg1q784e1q052rkzux80alzrvqkcdtth7r1i" [init]="{plugins: 'textcolor', toolbar:'forecolor backcolor'}"></editor>
+                </td>
+              </tr>
+              <tr><td>מה הלקוחות שלנו אומרים עלינו</td>
+              
+                <td><input class="form-control" type="text" formControlName="customerSay" /></td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+
+      <div class="w3-panel w3-card">
+        <br /><br />
+        <label></label>
+        <div class="form-group">
+          <table class="table" style="border:hidden;">
+            <thead>
+           
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+</form>

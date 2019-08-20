@@ -1,0 +1,82 @@
+<div style="width:100%;height:70px;background-color:#00174F"></div><br />
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-md-4">
+      <h1 style="font-family:Guttman-CourMir;right:40%;" class="font">מחמדלי</h1> <div style="margin-right:10px;display:inline-block">
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+    <!--<div class="row" style="background-color:#dcdcdc;border-radius:10px">
+      <div class="col-lg-6">
+        <br />
+        <label class="font">אורח או לקוח חדש</label><br /><br />
+        <button class="btn myBtn" (click)="showCustomerDetails()">המשך כאורח</button>
+      </div>
+      <div class="col-lg-6">
+        <br />
+        <label class="font">לקוח קיים</label><br /><br />
+        <form class="form-horizontal modal-body" style="margin-right: 60px; margin-left:60px;" [formGroup]="form1" (ngSubmit)="onSubmit(form1.value)">
+          <div class="form-group">
+            <div class="form-group">
+              <input id="email1" class="form-control input-sm" formControlName="email" type="email" placeholder="הכנס אימייל" />
+            </div>
+            <div class="form-group">
+              <input class="form-control input-sm" id="password1" formControlName="password" type="password" placeholder="הכנס סיסמא" />
+            </div>
+            <input [disabled]="!form1.valid" type="submit" class="btn myBtn" value="התחבר">
+          </div>
+        </form>
+        <br /><br />
+      </div>
+    </div>-->
+
+    <div class="row" style="height:10px"></div>
+    <div class="row" style="background-color:#dcdcdc;border-radius:10px">
+      <div class="col-lg-12">
+        <h2 class="font">כתובת</h2>
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+          <main class="page-content">
+            <div>
+              <label>שם פרטי</label>
+              <input class="form-control" formControlName="firstName" type="text" />
+              <label>שם משפחה</label>
+              <input class="form-control" formControlName="lastName" type="text" />
+              <label>דוא"ל</label>
+              <input class="form-control" formControlName="mail" type="email" />
+              <label>מספר טלפון</label>
+              <div class="form-group">
+                <input class="form-control" formControlName="numberPhone" type="text" />
+                <div class="form-group" formGroupName="adress">
+                  <label>רחוב</label>
+                  <input class="form-control" formControlName="street" type="text" />
+                  <label>עיר</label>
+                  <input class="form-control" formControlName="city" type="text" />
+                  <label>מס' בית</label>
+                  <input class="form-control" formControlName="numHouse" type="text" />
+                  <label>מיקוד</label>
+                  <input class="form-control" formControlName="postalCode" type="password" />
+                </div>
+              </div>
+            </div>
+          </main>
+          <input type="submit" class="btn myBtn" value="המשך לתשלום" [disabled]="!form.valid" /><br /><br />
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row" style="height:10px"></div>
+        <app-stripe *ngIf="pay"></app-stripe>
+      </div>
+      <!--<payment-request></payment-request>-->
+    </div>
+  </div>
+</div>
+<br /><br /><br />
+<br /><br /><br />

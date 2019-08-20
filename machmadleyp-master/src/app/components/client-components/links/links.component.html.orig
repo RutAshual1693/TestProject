@@ -1,0 +1,74 @@
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <nav id="navbar" class="navbar navbar-default navbar-fixed-top" style="font-family:Tahoma;font-weight:bold">
+    <div class="container-fluid">
+      <div class="navbar-header" style="float:right">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <label id="logo" class="navbar-brand" href="#myPage" style="color:darkcyan">מחמדלי</label>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar" style="float:left">
+        <ul class="nav navbar-nav navbar-right">
+          <li style="float:right"><a (click)="homePageClick()" class="active a" style="cursor:pointer;color:darkcyan !important">דף הבית</a></li>
+          <li style="float:right" class="dropdown">
+        <li style="float:right" class="dropdown" *ngFor="let type of typesService.listTypes">
+            <a style="background-color:transparent;color:black " class="dropdown-toggle a" data-toggle="dropdown" href="#">
+            {{type.name}}
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+<<<<<<< HEAD
+            <li  *ngFor="let category of this.categoriesService.listCategories|getCategoriesByType:type._id"><a style="float:right" (click)="chooseCategory(type._id,category)" routerLink="baseClientP"><b>{{category.name}}</b></a></li>
+=======
+            <li *ngFor="let category of this.categoriesService.listCategories|getCategoriesByType:type._id">
+              <a (click)="chooseCategory(type._id,category)" routerLink="baseClientP"><b>{{category.name}}</b></a></li>
+>>>>>>> ede737520c069239775ff14c0db4311598cf8c93
+            <!--<li><a href="#">Extras</a></li>
+      <li><a href="#">Media</a></li>-->
+            </ul>
+          </li>
+
+        <!--<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
+          <li style="float:right"><a class="a" style="color:black" href="#about">אודות</a></li>
+
+        <li style="float:right;color:black"><a class="a" style="color:black" href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-user"></span><b>הרשם</b></a></li>
+        <li style="float:right;color:black"><a class="a" style="color:black" href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span><b>התחבר</b></a></li>
+          <!--<li style="float:right"><a href="#contact">צור קשר</a></li>-->
+          <li><!--<a href="#"><span class="glyphicon glyphicon-search"></span></a>--></li>
+        <li style="float:right;"><a class="a" style="color:black" href="#contact"> <b>צור קשר</b></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<<<<<<< HEAD
+  <router-outlet *ngIf="!this.productsService.homePage"></router-outlet>
+  <div *ngIf="this.productsService.homePage">
+    <app-carousel-advertising></app-carousel-advertising>
+    <app-hot-categories></app-hot-categories>
+    <app-hot-product></app-hot-product>
+=======
+  <div >
+    <app-carousel-advertising></app-carousel-advertising>
+    <app-hot-categories></app-hot-categories>
+    <app-hot-products></app-hot-products>
+>>>>>>> ede737520c069239775ff14c0db4311598cf8c93
+    <app-our-castomers-say></app-our-castomers-say>
+    <div id="about">
+      <app-about-as></app-about-as>
+    </div>
+    <div id="contact">
+      <app-contact></app-contact>
+    </div>
+<<<<<<< HEAD
+  </div>
+    <app-registration></app-registration>
+    <app-login></app-login>
+
+=======
+    <app-registration></app-registration>
+    <app-login></app-login>
+  </div>
+>>>>>>> ede737520c069239775ff14c0db4311598cf8c93
+</body>

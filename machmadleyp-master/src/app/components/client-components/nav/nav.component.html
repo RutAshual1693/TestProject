@@ -1,0 +1,25 @@
+<!--<nav class="navbar navbar-inverse">
+  <div style="float:right" class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">מחמדלי</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">דף הבית</a></li>
+      <li class="active"><a href="#">אודות</a></li>
+      <li class="active"><a href="#">צור קשר</a></li>
+        <li *ngFor="let type of typesService.listTypes" class="dropdown col-lg-2">
+          <button style="width:90%;height:100px" class="dropbtn">
+            <div>
+              <img style="width:100%;height:100%" src="assets/img/icons/{{type.icon}}" />
+            </div><br />
+            <div><span style="font-family:Tahoma"><b>{{type.name}}</b></span></div>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a *ngFor="let category of this.categoriesService.listCategories|getCategoriesByType:type.name">{{category.name}}</a>
+          </div>
+        </li>
+
+    </ul>
+  </div>
+</nav>-->

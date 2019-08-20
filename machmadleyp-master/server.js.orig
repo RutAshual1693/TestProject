@@ -1,0 +1,377 @@
+'use strict';
+const express = require('express')
+const bodyParser = require('body-parser')
+const path = require('path');
+const app = express()
+var multer = require('multer');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
+<<<<<<< HEAD
+//create a cors middleware
+app.use(function (req, res, next) {
+  //set headers to allow cross origin request.
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+=======
+>>>>>>> ede737520c069239775ff14c0db4311598cf8c93
+app.listen(5000, function () {
+  console.log('Example app listening on port 5000!');
+});
+var listProducts,listCategories,listProductOptions;
+var mongo = require('mongodb');
+var MongoClient = mongo.MongoClient;
+var url = "mongodb://localhost:27017/machmadleyDB";
+require('./server/categories.js');
+var dbo;
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err;
+  dbo = db.db("machmadleyDB");
+});
+
+var DIR = './uploads/';
+
+var upload = multer({ dest: DIR });
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://valor-software.github.io');
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+app.use(multer({
+  dest: DIR,
+  rename: function (fieldname, filename) {
+    return filename + Date.now();
+  },
+  onFileUploadStart: function (file) {
+    console.log(file.originalname + ' is starting ...');
+  },
+  onFileUploadComplete: function (file) {
+    console.log(file.fieldname + ' uploaded to  ' + file.path);
+  }
+}));
+
+app.get('/api', function (req, res) {
+  res.end('file catcher example');
+});
+
+app.post('/api', function (req, res) {
+  upload(req, res, function (err) {
+    if (err) {
+      return res.end(err.toString());
+    }
+
+    res.end('File is uploaded');
+  });
+});
+
+
+
+
+
+
+
+//  //-----שליחת רשימת המוצרים ללקוח
+app.get('/listProducts', function (req, res) {
+  getProducts(req,res);
+});
+//---עריכת מוצר---
+app.post('/saveProductEditing', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    dbo.collection("products").updateOne({ _id: new mongo.ObjectID(req.body._id) }, {
+      $set:
+        {
+          name: req.body.product["name"],
+          model: req.body.product["model"],
+          price: req.body.product["price"],
+          quantity: req.body.product["quantity"],
+          inStock: req.body.product["inStock"],
+          minQuantityInOrder: req.body.product["minQuantityInOrder"],
+          uniqueNameToLink: req.body.product["uniqueNameToLink"],
+          categories: req.body.product["categories"],
+          prodDescription: req.body.product["prodDescription"],
+          company: req.body.product["company"],
+          typeAnimal: req.body.product["typeAnimal"],
+          options: req.body.product["options"],
+          relatedProducts: req.body.product["relatedProducts"],}
+
+    }, function (err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+  });
+  });
+  myPromise.then(fromResolve => getProducts(req, res), err => console.log(err));
+})
+//----עריכת מוןצר - מחיקת קטגוריה מרשימת הקטגוריות במוצר שנבחר
+
+app.post('/deleteCategoryFromProduct', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    var myquery = { _id: new mongo.ObjectID(req.body._id) };
+    var newvalues = { $set: { categories: req.body.categories } };
+    dbo.collection("products").updateOne(myquery, newvalues, function (err, res) {
+    });
+  });
+  myPromise.then(fromResolve => getProducts(req, res), err => console.log(err));
+})
+//-------הוספת מוצר
+app.post('/addProduct', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+      dbo.collection("products").insertOne(req.body, function (err, res) {
+        if (err) reject(err);
+        console.log("1 category inserted");     
+        resolve(res);
+    });
+  });
+  myPromise.then(fromResolve => getProducts(req, res), err => console.log(err));
+});
+var multer = require('multer');
+// set the directory for the uploads to the uploaded to
+var DIR = './images/';
+//define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
+var upload = multer({ dest: './images/' });
+var type = upload.single('photo');
+
+
+app.post('/uploadImage', type, function (req, res, next) {
+  var path = '';
+  var fileName = (new Date().getTime()).toString();
+  upload(req, res, function (err) {
+    if (err) {
+      // An error occurred when uploading
+      console.log(err);
+      return res.status(422).send("an Error occured")
+    }
+    // No error occured.
+    path = req.file.path;
+    return res.send("Upload Completed for " + path);
+  });
+})
+//--קבלת רשימת המוצרים
+function getProducts(req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+      //--שליפת רשימת הקטגוריות מהשרת
+      dbo.collection("products").find().toArray(function (err, result) {
+        if (err) reject(err);
+        listProducts = result;
+        console.log(result);
+        resolve(result);
+      });
+  });
+  myPromise.then(fromResolve => res.send(JSON.stringify(fromResolve)), err => console.log(err));
+}
+
+
+app.post('/deleteProduct', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    console.log("lllllll" + req.body._id);
+    dbo.collection("products").deleteOne({ _id: new mongo.ObjectID(req.body._id) }, function (err, obj) {
+      if (err) reject(err);
+      console.log("1 document deleted");
+      resolve(listProducts);
+    });
+  });
+  myPromise.then(fromResolve => getProducts(req, res), err => console.log(err));
+}
+)
+   //********************************************************************************
+   //********קטגוריות***************************************************************
+  //*********************************************************************************
+
+
+//---שליחת רשימת הקטגוריות ללקוח
+app.get('/listCategories', function(req, res) {
+    getCategories(req, res);
+});
+function getCategories(req, res) {
+  var myPromise = new Promise((resolve, reject) => {  
+      //--שליפת רשימת הקטגוריות מהשרת
+      dbo.collection("categories").find().toArray(function (err, result) {
+        if (err) reject(err);
+        listCategories = result;
+        console.log(result);   
+        resolve(result);
+    });
+  });
+  myPromise.then(fromResolve => res.send(JSON.stringify(fromResolve)) , err => console.log(err));
+}
+//--מחיקת קטגוריה------------------
+app.post('/deleteCategories', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    dbo.collection("categories").deleteOne({ _id: new mongo.ObjectID(req.body._id) }, function (err, obj) {
+       if (err) reject(err);
+       console.log("1 document deleted");
+       //dbo.collection("categories").find().toArray(function (err, result) {
+       //  if (err) reject(err);
+       //  listCategories = result;
+       //  console.log(result);     
+         resolve(obj);
+  });
+  });
+  myPromise.then(fromResolve => getCategories(req, res), err => console.log(err));     
+});
+//------הוספת קטגוריה------------------
+app.post('/addCategory', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+      dbo.collection("categories").insertOne(req.body, function (err, res) {
+        if (err) reject(err);
+        console.log("1 category inserted");    
+        resolve(res);
+      });
+    });
+  myPromise.then(fromResolve => getCategories(req, res), err => console.log(err));
+});
+app.get('/listProductOptions', function (_req, res) {
+  getProductOptions(_req, res);
+});
+function getProductOptions(req, res)
+{
+var myPromise = new Promise((resolve, reject) => {
+      dbo.collection("productOptions").find().toArray(function (err, res) {
+        if (err) reject(err);
+        resolve(res);
+      });
+  });
+  myPromise.then(fromResolve => res.send(JSON.stringify(fromResolve)), err => console.log(err));
+}
+app.post('/editCategory', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    dbo.collection("categories").updateOne({ _id: new mongo.ObjectID(req.body._id) }, { $set: { name: req.body.name } }, function (err, obj) {
+      if (err) reject(err);
+      console.log("1 category updated");
+      resolve(listProducts);
+    });
+  });
+  myPromise.then(fromResolve => getCategories(req, res), err => console.log(err));
+}
+)
+//***********************************************************************
+////********אפשרויות מוצר*************************************************
+//***********************************************************************
+//-מחיקת אופציה
+app.post('/deleteOption', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+      dbo.collection("productOptions").deleteOne({ name: req.body.name }, function (err, obj) {
+        if (err) reject(err);
+        console.log("1 document deleted");
+        dbo.collection("productOptions").find().toArray(function (err, result) {
+          if (err) reject(err);
+          listProductOptions = result;
+          console.log(result);
+          resolve(result);
+        });  
+    });
+  });
+  myPromise.then(fromResolve => res.send(JSON.stringify(fromResolve)), err => console.log(err));
+});
+//--מחיקת ערך אחד מאפשרות מוצר
+app.post('/deleteValue', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {  
+    var myquery = { _id: new mongo.ObjectID(req.body._id) };
+    var newvalues = { $set: { name: req.body.name,values: req.body.values } };
+    dbo.collection("productOptions").updateOne(myquery, newvalues, function (err, res) {
+    });
+  });
+    myPromise.then(fromResolve => getProducts(req,res), err => console.log(err));
+})
+//*******************************************************************************
+//**************לקוחות**********************************************************
+//******************************************************************************
+var listCustomers;
+function getCustomers(req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    //--שליפת רשימת הלקוחות מהשרת
+    dbo.collection("customers").find().toArray(function (err, result) {
+      if (err) reject(err);
+      listCustomers = result;
+      console.log(result);
+      resolve(result);
+    });
+  });
+  myPromise.then(fromResolve => res.send(JSON.stringify(fromResolve)), err => console.log(err));
+}
+//----שליחת רשימת הלקוחות ללקוח
+app.get('/listCustomers', function (req, res) {
+  getCustomers(req, res);
+});
+//----
+app.post('/addCustomer', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    dbo.collection("customers").insertOne(req.body, function (err, result) {
+      if (err) reject(err);
+      console.log("1 Customer inserted");
+      resolve(result);
+    });
+  });
+  myPromise.then(fromResolve => getCustomers(req, res), err => console.log(err));
+});
+////---
+app.post('/deleteCustomer', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    dbo.collection("customers").deleteOne({ _id: new mongo.ObjectID(req.body._id) }, function (err, obj) {
+      if (err) reject(err);
+      console.log("1 customer deleted");
+      resolve(obj);
+    });
+  });
+  myPromise.then(fromResolve => getCustomers(req, res), err => console.log(err));
+}
+)
+
+app.post('/editCustomer', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    dbo.collection("customers").updateOne({ _id: new mongo.ObjectID(req.body._id) }, {
+      $set:
+        {
+          firstName: req.body.customer["firstName"],
+          lastName: req.body.customer["lastName"],
+          registrationDate: req.body.customer["registrationDate"],
+          mail: req.body.customer["mail"], password: req.body.customer["password"],
+          confirmPassword: req.body.customer["confirmPassword"]
+        }
+    }, function (err, obj) {
+      if (err) reject(err);
+      console.log("1 customer updated");
+      resolve(listCustomers);
+    });
+  });
+  myPromise.then(fromResolve => getCustomers(req, res), err => console.log(err));
+}
+)
+//*******************************************************************************
+//**************לקוחות**********************************************************
+//******************************************************************************
+var listTypes;
+function getTypes(req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    //--שליפת רשימת הלקוחות מהשרת
+    dbo.collection("typeAnimal").find().toArray(function (err, result) {
+      if (err) reject(err);
+      listTypes = result;
+      console.log(result);
+      resolve(result);
+    });
+  });
+  myPromise.then(fromResolve => res.send(JSON.stringify(fromResolve)), err => console.log(err));
+}
+//----שליחת רשימת הלקוחות ללקוח
+app.get('/listTypes', function (req, res) {
+  getTypes(req, res);
+});
+
+app.post('/addProductOption', function (req, res) {
+  var myPromise = new Promise((resolve, reject) => {
+    dbo.collection("productOptions").insertOne(req.body, function (err, res) {
+      if (err) reject(err);
+      console.log("1 productOption inserted");
+      resolve(res);
+    });
+  });
+  myPromise.then(fromResolve => getProductOptions(req, res), err => console.log(err));
+});
